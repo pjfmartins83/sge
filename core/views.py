@@ -1,8 +1,10 @@
 import json
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from . import metrics
 
 
+@login_required(login_url="login")
 def home(request):
     product_metrics = metrics.get_metric_products()
     sales_metrics = metrics.get_sales_metrics()
