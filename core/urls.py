@@ -11,8 +11,9 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("", include("brands.urls")),
     path("", include("categories.urls")),
-    path("", include("suppliers.urls")),
     path("", include("inflows.urls")),
     path("", include("outflows.urls")),
     path("", include("products.urls")),
+    path("", include("suppliers.urls")),
+    path("api/v1/", include("authentication.urls")),
 ]
