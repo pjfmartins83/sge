@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / ".env")
 
-ENVIRONMENT = os.getenv("DJANGO_ENV", "dev")
+ENVIRONMENT = os.getenv("DJANGO_ENV", "local")
 
 
 # Quick-start development settings - unsuitable for production
@@ -83,7 +83,7 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-if ENVIRONMENT == "prd":
+if ENVIRONMENT == "docker":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
