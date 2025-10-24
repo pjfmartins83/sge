@@ -1,7 +1,24 @@
 import json
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from . import forms
 from . import metrics
+
+
+class RegisterView(CreateView):
+    template_name = "registration/register.html"
+    form_class = forms.RegisterForm
+    success_url = reverse_lazy("home")
+
+    def form_valid(self, form):
+        # Salva o usuário:
+        user = form.save()
+        # Faz login automático:
+        login(self.request, user)
+        return super().form_valid(form)
 
 
 @login_required(login_url="login")
